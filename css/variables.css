@@ -1,0 +1,53 @@
+/* Cosmic Cyan — Glass Edition Color Scheme */
+:root {
+  /* Backgrounds - Glass morphism */
+  --bg-primary: rgba(4, 14, 22, 0.35);
+  --bg-secondary: rgba(10, 28, 42, 0.45);
+  --bg-tertiary: rgba(8, 28, 40, 0.55);
+  --bg-glass: rgba(6, 20, 36, 0.65);
+  --bg-glass-light: rgba(8, 24, 40, 0.45);
+
+  /* Text colors */
+  --text-primary: #e6f7ff;
+  --text-secondary: #9fe8ff;
+  --text-tertiary: #bfefff;
+  --text-muted: #6bbbd690;
+  --text-header: #ffffffcc;
+
+  /* Accent colors */
+  --accent-cyan: #00c8ff;
+  --accent-cyan-light: #7adfff;
+  --accent-cyan-bright: #4ddcff;
+  --accent-cyan-glow: #00e5ff;
+  --accent-blue: #0aa6c2;
+
+  /* Medium tones */
+  --medium-1: #6bbbd690;
+  --medium-2: #cfe9f2;
+  --medium-3: #89cfe6;
+  --medium-4: #6f8791;
+
+  /* Glass effects */
+  --glass-border: rgba(100, 220, 255, 0.18);
+  --glass-hover: rgba(77, 220, 255, 0.10);
+  --glass-glow: rgba(0, 200, 255, 0.07);
+
+  /* Blur effects */
+  --blur-strong: blur(18px);
+  --blur-medium: blur(12px);
+  --blur-light: blur(10px);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #7c3aed, #06b6d4);
+  --gradient-glass: linear-gradient(to bottom, rgba(4, 20, 32, 0.60), rgba(4, 14, 22, 0.20));
+  --gradient-neon: linear-gradient(to right, transparent, rgba(0, 229, 255, 0.50), transparent);
+
+  /* Shadows */
+  --shadow-glow: 0 4px 30px var(--glass-glow);
+  --shadow-glow-strong: 0 8px 40px rgba(0, 200, 255, 0.15);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+}

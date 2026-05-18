@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fan-world-me.github.io/sitemap.xml
