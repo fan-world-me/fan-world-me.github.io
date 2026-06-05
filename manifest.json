@@ -1,0 +1,20 @@
+{
+  "name": "Yaroslav — Full-Stack Developer",
+  "short_name": "fan_world_me",
+  "description": "Full-Stack Developer: Python, JavaScript, FastAPI, Node.js, Docker.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#040e16",
+  "theme_color": "#00c8ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer"],
+  "lang": "en"
+}
