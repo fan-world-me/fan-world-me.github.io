@@ -538,11 +538,15 @@
        GLOBAL MOBILE CENTERING FIXES
        ============================== */
     @media (max-width: 768px) {
-      /* Every section: убираем огромные боковые паддинги */
+      .nav-links { display: none !important; }
+      .mobile-menu-toggle { display: flex !important; }
+
       .hero {
-        padding: 90px 20px 48px !important;
+        padding: 88px 20px 44px !important;
         max-width: 100% !important;
         margin: 0 !important;
+        min-height: auto !important;
+        align-items: flex-start !important;
       }
 
       .hero-content {
@@ -554,19 +558,36 @@
         max-width: 100% !important;
       }
 
+      .hero-contacts {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+      }
+
+      .contact-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        font-size: 14px !important;
+        padding: 13px 12px !important;
+      }
+
+      .contact-btn.primary {
+        grid-column: 1 / -1 !important;
+      }
+
       .skills-section {
-        padding: 56px 20px 40px !important;
+        padding: 52px 20px 36px !important;
         max-width: 100% !important;
         margin: 0 !important;
       }
 
       .about-section {
-        padding: 56px 20px 40px !important;
+        padding: 52px 20px 36px !important;
         max-width: 100% !important;
         margin: 0 !important;
         display: flex !important;
         flex-direction: column !important;
-        gap: 36px !important;
+        gap: 32px !important;
       }
 
       .about-text {
@@ -582,9 +603,18 @@
       }
 
       .contact-section {
-        padding: 56px 20px 40px !important;
+        padding: 52px 20px 36px !important;
         max-width: 100% !important;
         margin: 0 !important;
+      }
+
+      .contact-links {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+
+      .contact-links .contact-btn {
+        justify-content: center !important;
       }
 
       footer {
@@ -602,21 +632,30 @@
       .divider {
         margin: 0 20px !important;
       }
+
+      .section-title {
+        margin-bottom: 32px !important;
+      }
     }
 
     @media (max-width: 480px) {
       .hero {
-        padding: 80px 16px 36px !important;
+        padding: 76px 16px 36px !important;
       }
 
       .skills-section,
       .about-section,
       .contact-section {
-        padding: 48px 16px 32px !important;
+        padding: 44px 16px 30px !important;
       }
 
       nav {
         padding: 10px 16px !important;
+      }
+
+      .hero-contacts {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
       }
     }
   </style>
