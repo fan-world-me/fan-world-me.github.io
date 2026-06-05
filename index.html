@@ -35,7 +35,8 @@
   <style>
     @font-face {
       font-family: 'Monocraft';
-      src: url('Monocraft.ttc') format('truetype');
+      src: url('Monocraft.ttf') format('truetype');
+      font-display: swap;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -45,11 +46,15 @@
     body {
       background: rgba(4, 14, 22, 0.95);
       color: var(--text-primary);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Monocraft', 'Fira Code', 'Inter', monospace;
       line-height: 1.6;
       overflow-x: hidden;
       opacity: 0;
       transition: opacity 0.5s ease;
+    }
+
+    p, .hero-sub, .about-text p, .contact-desc, .project-desc {
+      font-family: 'Inter', sans-serif;
     }
 
     body.loaded {
@@ -299,30 +304,28 @@
     }
 
     .tag {
-      background: rgba(8, 24, 40, 0.50);
-      backdrop-filter: var(--blur-light);
-      -webkit-backdrop-filter: var(--blur-light);
-      border: 1px solid var(--glass-border);
-      border-radius: 6px;
-      padding: 5px 12px;
+      background: rgba(0, 200, 255, 0.07);
+      border: 1px solid rgba(0, 200, 255, 0.25);
+      border-radius: 8px;
+      padding: 6px 13px;
       font-size: 13px;
       font-family: 'Monocraft', 'Fira Code', monospace;
-      color: var(--text-primary);
+      color: var(--accent-cyan-light);
       transition: all var(--transition-normal);
+      letter-spacing: 0.3px;
     }
 
     .tag:hover {
       border-color: var(--accent-cyan);
-      color: var(--accent-cyan-light);
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(0, 200, 255, 0.2);
+      color: #fff;
+      background: rgba(0, 200, 255, 0.15);
+      box-shadow: 0 0 12px rgba(0, 200, 255, 0.2);
     }
 
     .tag.hot {
-      border-color: var(--glass-border);
+      background: rgba(0, 200, 255, 0.07);
+      border-color: rgba(0, 200, 255, 0.25);
       color: var(--accent-cyan-light);
-      background: rgba(0, 200, 255, 0.1);
-      box-shadow: 0 0 10px rgba(0, 200, 255, 0.15);
     }
 
     /* ABOUT */
@@ -685,6 +688,10 @@
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <div class="mobile-menu-footer">
+    <a href="https://t.me/fan_world_me" target="_blank">@fan_world_me</a>
+    <a href="https://github.com/fan-world-me" target="_blank">github</a>
+  </div>
 </div>
 
 <!-- HERO -->

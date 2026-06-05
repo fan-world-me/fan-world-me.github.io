@@ -1,51 +1,60 @@
 /* ===================================
-   MOBILE NAVIGATION
+   HAMBURGER BUTTON
    =================================== */
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  gap: 6px;
   cursor: pointer;
   padding: 8px;
-  z-index: 101;
-  transition: all var(--transition-normal);
+  z-index: 200;
   -webkit-tap-highlight-color: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: background var(--transition-normal);
+}
+
+.mobile-menu-toggle:active {
+  background: rgba(0, 200, 255, 0.1);
 }
 
 .mobile-menu-toggle span {
-  width: 24px;
+  width: 22px;
   height: 2px;
-  background: var(--text-primary);
+  background: var(--accent-cyan-light);
   border-radius: 2px;
-  transition: all var(--transition-normal);
-  box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: block;
+  transform-origin: center;
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: translateY(8px) rotate(45deg);
 }
 
 .mobile-menu-toggle.active span:nth-child(2) {
   opacity: 0;
-  transform: translateX(-20px);
+  transform: scaleX(0);
 }
 
 .mobile-menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
+/* ===================================
+   FULL-SCREEN MENU OVERLAY
+   =================================== */
 .mobile-menu-overlay {
   display: none;
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(4, 14, 22, 0.95);
-  backdrop-filter: var(--blur-strong);
-  -webkit-backdrop-filter: var(--blur-strong);
-  z-index: 99;
+  inset: 0;
+  background: rgba(4, 14, 22, 0.5);
+  z-index: 149;
   opacity: 0;
+  transition: opacity 0.3s ease;
   pointer-events: none;
-  transition: opacity var(--transition-slow);
 }
 
 .mobile-menu-overlay.active {
@@ -54,59 +63,108 @@
 }
 
 .mobile-menu {
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
   position: fixed;
-  top: 0;
-  right: -100%;
-  width: min(280px, 85vw);
-  height: 100dvh;
-  background: var(--bg-glass);
-  backdrop-filter: var(--blur-strong);
-  -webkit-backdrop-filter: var(--blur-strong);
-  border-left: 1px solid var(--glass-border);
-  z-index: 100;
-  padding: 80px 28px 32px;
-  transition: right var(--transition-slow) cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: -10px 0 50px rgba(0, 200, 255, 0.1);
-  overflow-y: auto;
+  inset: 0;
+  z-index: 150;
+  background: rgba(4, 10, 20, 0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.mobile-menu.active { right: 0; }
+.mobile-menu.active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+}
 
 .mobile-menu ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0 32px;
 }
 
 .mobile-menu a {
-  color: var(--text-primary);
-  text-decoration: none;
-  font-size: 17px;
-  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 10px;
-  transition: all var(--transition-normal);
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Monocraft', 'Fira Code', monospace;
+  font-size: 20px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 16px 32px;
+  border-radius: 12px;
   border: 1px solid transparent;
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+  transition: all 0.2s ease;
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-
-.mobile-menu a:active {
-  background: var(--glass-hover);
-  border-color: var(--glass-border);
-  color: var(--accent-cyan-light);
+  letter-spacing: 0.5px;
 }
 
 .mobile-menu a::before {
-  content: '▸';
+  content: '//';
+  font-family: 'Monocraft', 'Fira Code', monospace;
   color: var(--accent-cyan);
-  font-size: 18px;
-  flex-shrink: 0;
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a:active {
+  color: var(--text-primary);
+  background: rgba(0, 200, 255, 0.07);
+  border-color: rgba(0, 200, 255, 0.2);
+}
+
+.mobile-menu a:hover::before,
+.mobile-menu a:active::before {
+  opacity: 1;
+}
+
+.mobile-menu a.active {
+  color: var(--accent-cyan-light);
+  border-color: rgba(0, 200, 255, 0.25);
+  background: rgba(0, 200, 255, 0.07);
+}
+
+.mobile-menu a.active::before {
+  opacity: 1;
+}
+
+/* Social links at bottom of mobile menu */
+.mobile-menu-footer {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  gap: 16px;
+}
+
+.mobile-menu-footer a {
+  color: var(--text-muted);
+  font-size: 12px;
+  text-decoration: none;
+  font-family: 'Monocraft', 'Fira Code', monospace;
+  transition: color 0.2s;
+}
+
+.mobile-menu-footer a:hover {
+  color: var(--accent-cyan);
 }
 
 /* ===================================
@@ -123,21 +181,12 @@
   .stats-grid { grid-template-columns: 1fr 1fr; }
 }
 
+/* ===================================
+   MOBILE — ≤768px
+   =================================== */
 @media (max-width: 768px) {
   .mobile-menu-toggle { display: flex; }
-  .mobile-menu, .mobile-menu-overlay { display: block; }
-  .nav-links { display: none; }
-  .nav-logo { font-size: 15px; }
-
-  .hero-tag { font-size: 12px; padding: 5px 13px; margin-bottom: 20px; }
-  .hero h1 { font-size: clamp(26px, 7vw, 40px); line-height: 1.2; margin-bottom: 16px; }
-  .hero-sub { font-size: 15px; line-height: 1.65; margin-bottom: 28px; }
-  .hero-contacts { flex-direction: column; gap: 10px; }
-  .contact-btn {
-    width: 100%; justify-content: center;
-    padding: 14px 20px; font-size: 15px; border-radius: 10px;
-    touch-action: manipulation; -webkit-tap-highlight-color: transparent;
-  }
+  .mobile-menu-overlay { display: block; }
 
   .section-title { font-size: clamp(22px, 5vw, 30px); margin-bottom: 36px; }
   .section-label { font-size: 12px; margin-bottom: 8px; }
@@ -145,10 +194,11 @@
   .skills-grid { grid-template-columns: 1fr; gap: 14px; }
   .skill-card { padding: 20px 18px; border-radius: 14px; }
   .skill-card-title { font-size: 11px; margin-bottom: 12px; }
-  .skill-tags { gap: 7px; }
+  .skill-tags { gap: 8px; }
   .tag { font-size: 12px; padding: 5px 11px; }
 
-  .about-text .section-label, .about-text .section-title { text-align: left; }
+  .about-text .section-label,
+  .about-text .section-title { text-align: left; }
   .about-text p { font-size: 15px; line-height: 1.75; margin-bottom: 14px; }
 
   .stat-card { padding: 18px 14px; border-radius: 12px; }
@@ -159,45 +209,27 @@
   .contact-form { padding: 22px 18px; border-radius: 14px; }
   .form-group { margin-bottom: 18px; }
   .form-group label { font-size: 13px; margin-bottom: 6px; }
-  .form-group input, .form-group textarea {
+  .form-group input,
+  .form-group textarea {
     padding: 12px 13px; font-size: 16px; border-radius: 8px;
   }
   .form-group textarea { min-height: 110px; }
   .form-submit-btn { padding: 14px 20px; font-size: 15px; border-radius: 10px; }
-  .contact-links { flex-direction: column; align-items: stretch; gap: 10px; }
 }
 
 /* ===================================
    SMALL MOBILE — ≤480px
    =================================== */
 @media (max-width: 480px) {
-  nav { padding: 10px 16px; }
-  .nav-logo { font-size: 14px; }
+  .mobile-menu a { font-size: 18px; padding: 14px 24px; }
 
-  .hero {
-    padding: 80px 16px 36px;
-    padding-top: max(80px, calc(env(safe-area-inset-top, 0px) + 70px));
-  }
-
-  .hero h1 { font-size: clamp(24px, 8vw, 36px); }
-  .hero-sub { font-size: 14px; }
-  .contact-btn { font-size: 14px; padding: 13px 16px; }
-
-  .skills-section, .contact-section { padding: 48px 16px 32px; }
-  .about-section { padding: 48px 16px 32px; }
-  .section-title { font-size: clamp(20px, 6vw, 28px); margin-bottom: 28px; }
-
-  .skill-card { padding: 18px 16px; }
-  .tag { font-size: 11px; padding: 4px 10px; }
-
-  .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .stat-card { padding: 16px 12px; }
   .stat-number { font-size: 22px; }
   .stat-label { font-size: 11px; }
 
   .contact-form { padding: 18px 14px; }
-  .form-group input, .form-group textarea { font-size: 16px; padding: 11px 12px; }
-  .contact-links { gap: 8px; }
+  .form-group input,
+  .form-group textarea { font-size: 16px; padding: 11px 12px; }
 
   footer {
     padding: 16px;
@@ -206,42 +238,22 @@
 }
 
 /* ===================================
-   VERY SMALL — ≤360px (старые Android)
+   VERY SMALL — ≤360px
    =================================== */
 @media (max-width: 360px) {
-  .hero h1 { font-size: 22px; }
-  .hero-tag { font-size: 11px; padding: 4px 11px; }
-  .section-title { font-size: 19px; }
-  .contact-btn { padding: 12px 14px; font-size: 13px; gap: 6px; }
+  .mobile-menu a { font-size: 16px; padding: 13px 20px; }
   .tag { font-size: 10px; padding: 4px 9px; }
   .stat-number { font-size: 20px; }
   .skill-card { padding: 16px 14px; }
-  .mobile-menu { width: 90vw; padding: 70px 20px 24px; }
 }
 
 /* ===================================
-   LANDSCAPE MOBILE — высота < 500px
+   LANDSCAPE MOBILE — height < 500px
    =================================== */
 @media (max-height: 500px) and (orientation: landscape) {
-  .hero {
-    min-height: auto;
-    padding: 70px 20px 32px;
-  }
-
-  .hero h1 { font-size: clamp(22px, 4vh, 36px); margin-bottom: 10px; }
-  .hero-sub { font-size: 14px; margin-bottom: 20px; }
-
-  .hero-contacts { flex-direction: row; flex-wrap: wrap; }
-
-  .contact-btn {
-    width: auto;
-    flex: 1 1 calc(50% - 6px);
-    min-width: 120px;
-    padding: 10px 14px;
-    font-size: 13px;
-  }
-
-  .mobile-menu { padding-top: 56px; }
+  .mobile-menu ul { gap: 4px; }
+  .mobile-menu a { font-size: 16px; padding: 10px 20px; }
+  .mobile-menu-footer { bottom: 16px; }
 }
 
 /* ===================================
@@ -268,5 +280,5 @@
   }
 
   .skill-card:active { border-color: var(--accent-cyan); }
-  .tag:active { border-color: var(--accent-cyan); color: var(--accent-cyan-light); }
+  .tag:active { border-color: var(--accent-cyan); color: #fff; }
 }
