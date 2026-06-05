@@ -1,102 +1,69 @@
-# Portfolio Website
+# fan_world_me — Portfolio
 
-> Modern portfolio website with glassmorphism design, smooth animations, and full mobile responsiveness.
+> Personal portfolio of Yaroslav, Full-Stack Developer. Glassmorphism design, Monocraft font, dark/light theme, EN/RU i18n, smooth animations.
 
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-brightgreen)
 
-## 🌐 Live Demo
+## 🌐 Live
 
 [fan-world-me.github.io](https://fan-world-me.github.io)
 
 ## ✨ Features
 
-- **Glassmorphism Design** — Modern glass-effect UI with Cosmic Cyan color scheme
-- **Smooth Scroll Animations** — Elements fade in as you scroll using Intersection Observer
-- **Fully Responsive** — Mobile-first design with hamburger menu
-- **Contact Form** — Web3Forms integration (free, unlimited messages)
-- **Performance Optimized** — Lazy loading, preconnect, and optimized assets
-- **SEO Ready** — Meta tags, Open Graph, and Twitter Cards
-- **GitHub Pages Compatible** — Custom 404 page included
+- **Monocraft font** — pixel-style monospace font for headings
+- **Dark / Light theme** — toggle with smooth transitions, saved to localStorage
+- **EN / RU language** — auto-detected by IP (ex-USSR → RU), saved to localStorage
+- **Typing animation** — cycling job titles with blinking caret
+- **Scroll progress bar** — gradient line at the top of the page
+- **Cursor glow** — soft cyan glow following the cursor (desktop only)
+- **Back to top** — button appears after scrolling 500px
+- **Animated counters** — stat numbers count up on scroll-into-view
+- **Glassmorphism UI** — glass-effect cards with backdrop blur
+- **Scroll animations** — elements fade in via Intersection Observer
+- **Hamburger menu** — full-screen overlay with centered links
+- **Contact form** — Web3Forms integration (free, no backend)
+- **SEO** — schema.org/Person JSON-LD, Open Graph, Twitter Cards
+- **OG Image** — custom SVG preview card (1200×630)
+- **Mobile-first** — fully responsive, touch-friendly
 
-## 🎨 Design Features
-
-- Animated gradient background
-- Neon glow effects on hover
-- Glass morphism cards with backdrop blur
-- Smooth transitions and micro-interactions
-- Pulse animations on active elements
-- Mobile hamburger menu with slide-in animation
-
-## 🛠 Tech Stack
+## 🛠 Stack
 
 **Frontend:** HTML5, CSS3, Vanilla JavaScript  
-**Fonts:** Inter, Fira Code, Monocraft  
+**Fonts:** Monocraft, Inter, Fira Code  
 **Hosting:** GitHub Pages  
-**Design:** Glassmorphism, Cosmic Cyan theme
+**Form:** Web3Forms
 
-## 📁 Project Structure
+## 📁 Structure
 
 ```
-portfolio/
-├── index.html          # Main page
-├── 404.html           # Custom 404 page
+/
+├── index.html          — main page
+├── 404.html            — custom 404
+├── og-image.svg        — OG preview image (1200×630)
+├── icon.svg            — site favicon / PWA icon
+├── manifest.json       — PWA manifest (not linked, kept for reference)
+├── robots.txt          — search engine rules
+├── sitemap.xml         — sitemap for Google
+├── Monocraft.ttf       — Monocraft font
 ├── css/
-│   ├── variables.css  # Color scheme and CSS variables
-│   ├── animations.css # Scroll animations and effects
-│   ├── mobile.css     # Mobile responsive styles
-│   └── form.css       # Contact form styles
-├── js/
-│   └── animations.js  # Intersection Observer and interactions
-├── Monocraft.ttc      # Custom font
-├── Custom.css         # Original theme reference (not used)
-├── FORM_SETUP.md      # Contact form setup instructions
-├── CHANGELOG.md       # Detailed changelog
-├── LICENSE            # GPL v3.0
-└── README.md          # This file
+│   ├── variables.css   — CSS variables + light theme overrides
+│   ├── animations.css  — scroll-reveal keyframes
+│   ├── mobile.css      — mobile layout + hamburger menu
+│   └── form.css        — contact form styles
+└── js/
+    ├── theme.js        — dark/light toggle
+    ├── i18n.js         — EN/RU translations + IP detection
+    ├── animations.js   — Intersection Observer scroll effects
+    └── effects.js      — progress bar, cursor glow, back-to-top, counters, typing
 ```
 
-## 🚀 Quick Start
+## 🚀 Local Development
 
-1. Clone the repository:
 ```bash
-git clone https://github.com/fan-world-me/fan-world-me.github.io.git
-cd fan-world-me.github.io
+npx serve -s . -l 8000
+# open http://localhost:8000
 ```
-
-2. **Setup contact form** (required for form to work):
-   - Read [FORM_SETUP.md](FORM_SETUP.md) for detailed instructions
-   - Get free Access Key from [web3forms.com](https://web3forms.com)
-   - Replace `YOUR_ACCESS_KEY_HERE` in `index.html` with your key
-
-3. Open `index.html` in your browser or use a local server:
-```bash
-# Python
-python -m http.server 8000
-
-# Node.js
-npx serve
-
-# VS Code Live Server extension
-```
-
-4. Visit `http://localhost:8000`
-
-## 📱 Mobile Support
-
-The site is fully responsive with:
-- Hamburger menu for mobile navigation
-- Touch-friendly buttons and links
-- Optimized layouts for all screen sizes
-- Smooth animations on mobile devices
-
-## 🎯 Sections
-
-- **Hero** — Introduction with contact links
-- **Skills** — Technologies and tools organized by category
-- **Portfolio** — Link to GitHub repositories
-- **About** — Personal information and stats
-- **Contact** — Multiple contact links + working contact form
 
 ## 📬 Contact
 
@@ -105,23 +72,9 @@ The site is fully responsive with:
 - **Email:** yarik.kom2011@gmail.com
 - **GitHub:** [fan-world-me](https://github.com/fan-world-me)
 
-## 🎨 Color Scheme
-
-Based on **Cosmic Cyan — Glass Edition**:
-- Primary: `#00c8ff` (Cyan)
-- Secondary: `#7c3aed` (Purple)
-- Background: Dark with glass effects
-- Text: Light cyan tones
-
 ## 📄 License
 
 [GNU General Public License v3.0](LICENSE)
-
-## 🙏 Credits
-
-- Design inspired by glassmorphism trends
-- Color scheme: Cosmic Cyan theme
-- Font: Monocraft by Idrees Hassan
 
 ---
 
