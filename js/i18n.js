@@ -1,0 +1,172 @@
+(function () {
+  const LANG_KEY = 'portfolio-lang';
+
+  const USSR = ['RU','UA','BY','KZ','UZ','AZ','GE','AM','TM','TJ','KG','MD','LT','LV','EE'];
+
+  const T = {
+    en: {
+      'nav.skills':         'Skills',
+      'nav.portfolio':      'Portfolio',
+      'nav.about':          'About',
+      'nav.contact':        'Contact',
+      'hero.tag':           'Available for work',
+      'hero.greeting':      "Hi, I'm ",
+      'hero.title':         'Full-Stack Developer',
+      'hero.sub':           'I build web applications, backend services, and everything in between — from pixel-perfect frontends to scalable APIs and databases.',
+      'skills.label':       '// what I work with',
+      'skills.title':       'Skills & Technologies',
+      'about.label':        '// about me',
+      'about.title':        'Who I am',
+      'about.p1':           "I'm a full-stack developer with experience across the entire stack — from crafting responsive UIs to building robust backend services and working with databases.",
+      'about.p2':           "I enjoy working with asynchronous and multi-threaded systems, building APIs with FastAPI, and containerizing applications with Docker.",
+      'about.p3':           "Always learning, always building.",
+      'about.stat1':        'Languages & Frameworks',
+      'about.stat2':        'Stack Developer',
+      'about.stat3':        'PostgreSQL & SQL',
+      'about.stat4':        'Passion for Code',
+      'portfolio.label':    '// my work',
+      'portfolio.title':    'Portfolio',
+      'portfolio.desc':     'All my projects are open-source and available on GitHub.',
+      'portfolio.btn':      'View all repositories →',
+      'contact.label':      '// get in touch',
+      'contact.title':      "Let's work together",
+      'contact.desc':       'Have a project in mind? Feel free to reach out.',
+      'contact.name':       'Name',
+      'contact.email':      'Email',
+      'contact.subject':    'Subject',
+      'contact.message':    'Message',
+      'contact.submit':     'Send Message',
+    },
+    ru: {
+      'nav.skills':         'Навыки',
+      'nav.portfolio':      'Портфолио',
+      'nav.about':          'Обо мне',
+      'nav.contact':        'Контакты',
+      'hero.tag':           'Открыт для работы',
+      'hero.greeting':      'Привет, я ',
+      'hero.title':         'Full-Stack разработчик',
+      'hero.sub':           'Я создаю веб-приложения, бэкенд-сервисы и всё что между ними — от пиксельно точных интерфейсов до масштабируемых API и баз данных.',
+      'skills.label':       '// с чем я работаю',
+      'skills.title':       'Навыки и технологии',
+      'about.label':        '// обо мне',
+      'about.title':        'Кто я',
+      'about.p1':           'Я full-stack разработчик с опытом на всём стеке — от создания адаптивных интерфейсов до надёжных бэкенд-сервисов и баз данных.',
+      'about.p2':           'Мне нравится работать с асинхронными и многопоточными системами, создавать API на FastAPI и контейнеризировать приложения с Docker.',
+      'about.p3':           'Всегда учусь, всегда создаю.',
+      'about.stat1':        'Языков и фреймворков',
+      'about.stat2':        'Stack разработчик',
+      'about.stat3':        'PostgreSQL & SQL',
+      'about.stat4':        'Страсть к коду',
+      'portfolio.label':    '// мои работы',
+      'portfolio.title':    'Портфолио',
+      'portfolio.desc':     'Все мои проекты открыты и доступны на GitHub.',
+      'portfolio.btn':      'Посмотреть репозитории →',
+      'contact.label':      '// связаться',
+      'contact.title':      'Давайте работать вместе',
+      'contact.desc':       'Есть проект? Напишите мне.',
+      'contact.name':       'Имя',
+      'contact.email':      'Email',
+      'contact.subject':    'Тема',
+      'contact.message':    'Сообщение',
+      'contact.submit':     'Отправить',
+    }
+  };
+
+  const PLACEHOLDERS = {
+    en: {
+      'ph.name':    'Your name',
+      'ph.subject': "What's this about?",
+      'ph.message': 'Your message...',
+    },
+    ru: {
+      'ph.name':    'Ваше имя',
+      'ph.subject': 'О чём вы?',
+      'ph.message': 'Ваше сообщение...',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function applyLang(lang, animate) {
+    currentLang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.setAttribute('lang', lang);
+
+    const t = T[lang];
+    const ph = PLACEHOLDERS[lang];
+
+    if (animate) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.classList.add('lang-fade');
+      });
+    }
+
+    const doUpdate = () => {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+        if (animate) {
+          el.classList.remove('lang-fade');
+          el.classList.add('lang-fade-in');
+          setTimeout(() => el.classList.remove('lang-fade-in'), 300);
+        }
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (ph[key] !== undefined) el.placeholder = ph[key];
+      });
+      updateLangUI(lang);
+    };
+
+    if (animate) {
+      setTimeout(doUpdate, 150);
+    } else {
+      doUpdate();
+    }
+  }
+
+  function updateLangUI(lang) {
+    document.querySelectorAll('.lang-option').forEach(el => {
+      el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+    });
+    document.querySelectorAll('.lang-switcher').forEach(sw => {
+      sw.setAttribute('data-lang', lang);
+    });
+  }
+
+  async function detectByIP() {
+    try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 3000);
+      const res = await fetch('https://ipapi.co/json/', { signal: ctrl.signal });
+      clearTimeout(timer);
+      const data = await res.json();
+      return USSR.includes(data.country_code) ? 'ru' : 'en';
+    } catch {
+      return 'en';
+    }
+  }
+
+  async function init() {
+    const saved = localStorage.getItem(LANG_KEY);
+    let lang;
+
+    if (saved) {
+      lang = saved;
+    } else {
+      lang = await detectByIP();
+    }
+
+    applyLang(lang, false);
+
+    document.querySelectorAll('.lang-switcher').forEach(sw => {
+      sw.addEventListener('click', () => {
+        const next = currentLang === 'en' ? 'ru' : 'en';
+        applyLang(next, true);
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+  window.i18n = { applyLang };
+})();

@@ -182,11 +182,37 @@
 }
 
 /* ===================================
+   MOBILE MENU CONTROLS
+   =================================== */
+.mobile-menu-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--glass-border);
+  width: 100%;
+  max-width: 280px;
+  justify-content: center;
+}
+
+.mobile-menu-controls .lang-switcher {
+  flex: 1;
+  justify-content: center;
+}
+
+.mobile-menu-controls .theme-btn {
+  width: 40px;
+  height: 40px;
+}
+
+/* ===================================
    MOBILE — ≤768px
    =================================== */
 @media (max-width: 768px) {
   .mobile-menu-toggle { display: flex; }
   .mobile-menu-overlay { display: block; }
+  .nav-controls { display: none; }
 
   .section-title { font-size: clamp(22px, 5vw, 30px); margin-bottom: 36px; }
   .section-label { font-size: 12px; margin-bottom: 8px; }

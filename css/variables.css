@@ -1,11 +1,12 @@
 /* Cosmic Cyan — Glass Edition Color Scheme */
 :root {
-  /* Backgrounds - Glass morphism */
+  /* Backgrounds */
   --bg-primary: rgba(4, 14, 22, 0.35);
   --bg-secondary: rgba(10, 28, 42, 0.45);
   --bg-tertiary: rgba(8, 28, 40, 0.55);
   --bg-glass: rgba(6, 20, 36, 0.65);
   --bg-glass-light: rgba(8, 24, 40, 0.45);
+  --bg-body: rgba(4, 14, 22, 0.95);
 
   /* Text colors */
   --text-primary: #e6f7ff;
@@ -50,4 +51,156 @@
   --transition-fast: 0.15s ease;
   --transition-normal: 0.2s ease;
   --transition-slow: 0.3s ease;
+}
+
+/* ===================================
+   LIGHT THEME
+   =================================== */
+html[data-theme="light"] {
+  --bg-body: #e8f3fc;
+  --bg-primary: rgba(255, 255, 255, 0.35);
+  --bg-secondary: rgba(220, 240, 255, 0.55);
+  --bg-tertiary: rgba(200, 228, 248, 0.75);
+  --bg-glass: rgba(255, 255, 255, 0.72);
+  --bg-glass-light: rgba(255, 255, 255, 0.55);
+
+  --text-primary: #0d1e30;
+  --text-secondary: #1a4060;
+  --text-tertiary: #2a5a80;
+  --text-muted: rgba(26, 64, 96, 0.55);
+  --text-header: rgba(10, 20, 34, 0.92);
+
+  --accent-cyan: #0099cc;
+  --accent-cyan-light: #0077aa;
+  --accent-cyan-bright: #00aadd;
+  --accent-cyan-glow: #0099cc;
+  --accent-blue: #0077aa;
+
+  --medium-1: rgba(26, 64, 96, 0.5);
+  --medium-2: #1a4060;
+  --medium-3: #1a5a80;
+  --medium-4: #4a7a9c;
+
+  --glass-border: rgba(0, 130, 200, 0.2);
+  --glass-hover: rgba(0, 130, 200, 0.09);
+  --glass-glow: rgba(0, 130, 200, 0.09);
+
+  --shadow-glow: 0 4px 30px rgba(0, 130, 200, 0.12);
+  --shadow-glow-strong: 0 8px 40px rgba(0, 130, 200, 0.18);
+
+  --gradient-neon: linear-gradient(to right, transparent, rgba(0, 153, 204, 0.4), transparent);
+}
+
+html[data-theme="light"] body {
+  background: var(--bg-body);
+}
+
+html[data-theme="light"] body::before {
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(124,58,237,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(6,182,212,0.05) 0%, transparent 50%);
+}
+
+html[data-theme="light"] nav {
+  background: rgba(220, 238, 255, 0.82);
+  border-bottom-color: rgba(0, 130, 200, 0.18);
+}
+
+html[data-theme="light"] .mobile-menu {
+  background: rgba(232, 246, 255, 0.98);
+}
+
+html[data-theme="light"] .mobile-menu a {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .mobile-menu a:hover,
+html[data-theme="light"] .mobile-menu a.active {
+  color: var(--text-primary);
+  background: rgba(0, 130, 200, 0.08);
+  border-color: rgba(0, 130, 200, 0.2);
+}
+
+html[data-theme="light"] footer {
+  background: rgba(200, 228, 248, 0.85);
+  border-top-color: rgba(0, 130, 200, 0.18);
+}
+
+html[data-theme="light"] .skill-card,
+html[data-theme="light"] .stat-card,
+html[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(0, 130, 200, 0.18);
+}
+
+html[data-theme="light"] .skill-card:hover,
+html[data-theme="light"] .stat-card:hover,
+html[data-theme="light"] .glass-card:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+html[data-theme="light"] .tag {
+  background: rgba(0, 130, 200, 0.07);
+  border-color: rgba(0, 130, 200, 0.25);
+  color: #0077aa;
+}
+
+html[data-theme="light"] .tag:hover {
+  background: rgba(0, 130, 200, 0.14);
+  border-color: #0099cc;
+  color: #005588;
+}
+
+html[data-theme="light"] .contact-form {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 130, 200, 0.2);
+}
+
+html[data-theme="light"] .form-group input,
+html[data-theme="light"] .form-group textarea {
+  background: rgba(255, 255, 255, 0.6);
+  color: #0d1e30;
+  border-color: rgba(0, 130, 200, 0.2);
+}
+
+html[data-theme="light"] .form-group input::placeholder,
+html[data-theme="light"] .form-group textarea::placeholder {
+  color: rgba(26, 64, 96, 0.5);
+  opacity: 1;
+}
+
+html[data-theme="light"] .contact-btn.secondary {
+  background: rgba(255,255,255,0.55);
+  color: #0d1e30;
+  border-color: rgba(0, 130, 200, 0.22);
+}
+
+html[data-theme="light"] .contact-btn.secondary:hover {
+  border-color: #0099cc;
+  color: #0077aa;
+}
+
+html[data-theme="light"] .project-link {
+  background: rgba(255,255,255,0.5);
+  color: #1a4060;
+}
+
+html[data-theme="light"] .mobile-menu-footer a {
+  color: rgba(26, 64, 96, 0.5);
+}
+
+html[data-theme="light"] .mobile-menu-toggle span {
+  background: #0d1e30;
+}
+
+/* Smooth theme transition */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease !important;
 }
