@@ -99,9 +99,9 @@
 
   let currentLang = 'en';
 
-  function applyLang(lang, animate) {
+  function applyLang(lang, animate, save = true) {
     currentLang = lang;
-    localStorage.setItem(LANG_KEY, lang);
+    if (save) localStorage.setItem(LANG_KEY, lang);
     document.documentElement.setAttribute('lang', lang);
 
     const t  = T[lang];
@@ -157,14 +157,13 @@
   async function init() {
     const saved = localStorage.getItem(LANG_KEY);
 
-    // ── Render immediately with saved or default (non-blocking) ──
-    applyLang(saved || 'en', false);
-
-    // ── If first visit, detect by IP in background and silently update ──
-    if (!saved) {
-      detectByIP().then(detected => {
-        if (detected !== currentLang) applyLang(detected, false);
-      });
+    if (saved) {
+      // Known preference — apply and done
+      applyLang(saved, false);
+    } else {
+      // First visit: render EN immediately (no save), then detect IP and save result
+      applyLang('en', false, false);
+      detectByIP().then(detected => applyLang(detected, false, true));
     }
 
     document.querySelectorAll('.lang-switcher').forEach(sw => {
