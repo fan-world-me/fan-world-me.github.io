@@ -122,7 +122,7 @@ function initTypingAnimation() {
   // Restart when language changes
   const mo = new MutationObserver(() => {
     clearTimeout(timer);
-    idx = 0; text = ''; deleting = false;
+    text = ''; deleting = false;
     setTimeout(tick, 300);
   });
   mo.observe(document.documentElement, { attributeFilter: ['lang'] });

@@ -8,8 +8,7 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('revealed');
-      // Optional: unobserve after reveal for performance
-      // observer.unobserve(entry.target);
+      observer.unobserve(entry.target);
     }
   });
 }, observerOptions);

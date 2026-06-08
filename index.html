@@ -586,6 +586,51 @@
     html[data-theme="light"] .sun-icon  { opacity: 0; transform: rotate(-90deg) scale(0.4); }
     html[data-theme="light"] .moon-icon { opacity: 1; transform: rotate(0deg) scale(1); }
 
+    /* GITHUB ACTIVITY CHART */
+    .github-activity-wrap {
+      margin-top: 36px;
+      text-align: center;
+    }
+    .github-activity-chart {
+      width: 100%;
+      max-width: 720px;
+      border-radius: 12px;
+      opacity: 0.8;
+      filter: hue-rotate(180deg) saturate(1.4);
+    }
+    html[data-theme="light"] .github-activity-chart {
+      filter: none;
+      opacity: 0.9;
+    }
+    @media (max-width: 768px) {
+      .github-activity-chart { border-radius: 8px; }
+    }
+
+    /* PRIVATE BADGE (lock icon for private repos) */
+    .private-badge {
+      cursor: default;
+      opacity: 0.45;
+    }
+    .private-badge:hover {
+      border-color: var(--glass-border);
+      color: var(--text-secondary);
+      box-shadow: none;
+      background: rgba(8, 24, 40, 0.5);
+    }
+
+    /* PREFERS REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .scroll-reveal { opacity: 1 !important; transform: none !important; }
+      #scroll-progress { transition: none !important; }
+      #cursor-glow { display: none !important; }
+    }
+
     /* Lang fade animation */
     @keyframes langFadeIn {
       from { opacity: 0; transform: translateY(4px); }
@@ -1028,6 +1073,17 @@
       <div class="stat-label" data-i18n="about.stat4">Passion for Code</div>
     </div>
   </div>
+
+  <!-- GitHub Activity Chart -->
+  <div class="scroll-reveal fade-up github-activity-wrap">
+    <img
+      src="https://ghchart.ssh.surf/fan-world-me"
+      alt="GitHub contribution chart"
+      class="github-activity-chart"
+      loading="lazy"
+      onerror="this.parentElement.style.display='none'"
+    >
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -1037,12 +1093,97 @@
   <div class="scroll-reveal fade-up">
     <div class="section-label" data-i18n="portfolio.label">// my work</div>
     <h2 class="section-title" data-i18n="portfolio.title">Portfolio</h2>
-    <p style="color:var(--text-secondary);font-size:16px;margin-bottom:32px" data-i18n="portfolio.desc">All my projects are open-source and available on GitHub.</p>
+    <p style="color:var(--text-secondary);font-size:16px;margin-bottom:40px" data-i18n="portfolio.desc">Selected projects — from Minecraft mods to AI tools and hardware hacks.</p>
   </div>
-  <a href="https://github.com/fan-world-me?tab=repositories" target="_blank" class="contact-btn primary glow-on-hover scroll-reveal scale-in" style="display:inline-flex">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-    <span data-i18n="portfolio.btn">View all repositories →</span>
-  </a>
+
+  <div class="projects-grid">
+
+    <!-- Fan World Multitools -->
+    <div class="project-card glass-card scroll-reveal fade-up">
+      <div class="project-header">
+        <div class="project-icon">🎮</div>
+        <div class="project-links">
+          <span class="project-link private-badge" data-i18n-title="proj.private" title="Private repository">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+        </div>
+      </div>
+      <div class="project-title">Fan World Multitools</div>
+      <p class="project-desc" data-i18n="proj.multitools.desc">Client-side Fabric mod for Minecraft 1.21.11. Hotbar automation, elytra combos, mace PvP helpers and a Mod Menu settings screen.</p>
+      <div class="project-tags">
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">Fabric API</span>
+        <span class="skill-tag">Minecraft</span>
+      </div>
+    </div>
+
+    <!-- QuizAI -->
+    <div class="project-card glass-card scroll-reveal fade-up">
+      <div class="project-header">
+        <div class="project-icon">🤖</div>
+        <div class="project-links">
+          <a href="https://github.com/fan-world-me/quizai" target="_blank" rel="noopener" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-title">QuizAI</div>
+      <p class="project-desc" data-i18n="proj.quizai.desc">AI-powered quiz and answer system. Ask questions, get smart answers — built with modern JavaScript.</p>
+      <div class="project-tags">
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">AI</span>
+      </div>
+    </div>
+
+    <!-- Robot Vacuum Controller -->
+    <div class="project-card glass-card scroll-reveal fade-up">
+      <div class="project-header">
+        <div class="project-icon">🤖</div>
+        <div class="project-links">
+          <a href="https://github.com/fan-world-me/robot-vacuum-controller" target="_blank" rel="noopener" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-title">Robot Vacuum Controller</div>
+      <p class="project-desc" data-i18n="proj.vacuum.desc">Control a Tuya smart robot vacuum with an Xbox 360 joystick via Python. Real hardware meets game controllers.</p>
+      <div class="project-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Tuya API</span>
+        <span class="skill-tag">Hardware</span>
+      </div>
+    </div>
+
+    <!-- This Portfolio -->
+    <div class="project-card glass-card scroll-reveal fade-up">
+      <div class="project-header">
+        <div class="project-icon">💻</div>
+        <div class="project-links">
+          <a href="https://github.com/fan-world-me/fan-world-me.github.io" target="_blank" rel="noopener" class="project-link" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://fan-world-me.github.io" target="_blank" rel="noopener" class="project-link" title="Live site">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-title" data-i18n="proj.portfolio.title">This Portfolio</div>
+      <p class="project-desc" data-i18n="proj.portfolio.desc">Glassmorphism design, Monocraft font, dark/light theme, EN/RU i18n, typing animation and smooth scroll effects. Pure vanilla stack.</p>
+      <div class="project-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="scroll-reveal fade-up" style="margin-top:40px;text-align:center;">
+    <a href="https://github.com/fan-world-me?tab=repositories" target="_blank" rel="noopener" class="contact-btn primary glow-on-hover" style="display:inline-flex">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      <span data-i18n="portfolio.btn">View all repositories →</span>
+    </a>
+  </div>
 </section>
 <div class="divider"></div>
 
