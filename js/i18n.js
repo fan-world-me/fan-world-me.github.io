@@ -1,5 +1,6 @@
 (function () {
-  const LANG_KEY = 'portfolio-lang';
+  const LANG_KEY      = 'portfolio-lang';
+  const LANG_SRC_KEY  = 'portfolio-lang-src'; // 'ip' | 'user' — how lang was set
 
   const USSR = ['RU','UA','BY','KZ','UZ','AZ','GE','AM','TM','TJ','KG','MD','LT','LV','EE'];
 
@@ -157,18 +158,26 @@
   async function init() {
     const saved = localStorage.getItem(LANG_KEY);
 
-    if (saved) {
-      // Known preference — apply and done
+    const src = localStorage.getItem(LANG_SRC_KEY);
+
+    if (saved && src === 'user') {
+      // User explicitly clicked the switcher — respect their choice
       applyLang(saved, false);
     } else {
-      // First visit: render EN immediately (no save), then detect IP and save result
-      applyLang('en', false, false);
-      detectByIP().then(detected => applyLang(detected, false, true));
+      // No explicit user choice (first visit OR old auto-save bug):
+      // render immediately with saved/default, then detect by IP and save
+      applyLang(saved || 'en', false, false);
+      detectByIP().then(detected => {
+        localStorage.setItem(LANG_SRC_KEY, 'ip');
+        applyLang(detected, false, true);
+      });
     }
 
     document.querySelectorAll('.lang-switcher').forEach(sw => {
       sw.addEventListener('click', () => {
-        applyLang(currentLang === 'en' ? 'ru' : 'en', true);
+        const next = currentLang === 'en' ? 'ru' : 'en';
+        localStorage.setItem(LANG_SRC_KEY, 'user'); // mark as explicit choice
+        applyLang(next, true);
       });
     });
   }
